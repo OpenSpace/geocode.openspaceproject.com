@@ -1,148 +1,125 @@
 import express from "express";
 import fs from "fs";
-import path from "path";
-import csv from "csv-parser";
+import csv_parser from "csv-parser";
 import fuzzy from "fuzzy";
 
+// The keys of this interface have to match the headers in the labels file
 interface Location {
   Feature_Name: string;
-  Target: string;
   Diameter: number;
   Center_Latitude: number;
   Center_Longitude: number;
   Coordinate_System: string;
-  Approval_Status: string;
-  Approval_Date: string;
   Origin: string;
 }
 
-interface SearchResult {
-  name: string;
-  centerLatitude: number;
-  centerLongitude: number;
-  diameter: number;
-  origin: string;
-}
+let Locations = new Map<string, Location[]>();
+
+
+
+//
+// main
+//
 
 const app = express();
-const PORT = 3000;
-const csvFilePath = path.join(__dirname, "..", "data");
 
-function loadLocations(dataPath: string): Promise<Location[]> {
-  return new Promise((resolve, reject) => {
-    const results: Location[] = [];
+// Read all of the labels files at startup
+let files = fs.readdirSync("data");
+files = files.filter((file) => file.endsWith(".labels"));
+for (let file of files) {
+  function loadLocations(dataPath: string): Promise<Location[]> {
+    return new Promise((resolve, reject) => {
+      const results: Location[] = [];
 
-    fs.createReadStream(dataPath)
-      .pipe(csv({ skipLines: 5 }))
-      .on("data", (data) => {
-        results.push(data);
-      })
-      .on("end", () => resolve(results))
-      .on("error", (err) => reject(err));
-  });
-}
-
-function normalizeTo180Range(
-  lat: number,
-  lon: number,
-  system: "planetographic-east" | "planetographic-west" | "planetocentric-east"
-): { latitude: number; longitude: number } {
-  let normalizedLat = lat;
-  let normalizedLon = lon;
-
-  if (system === "planetographic-west") {
-    // First flip from west-positive to east-positive
-    normalizedLon = (360 - lon) % 360;
-  }
-
-  // Then shift from [0, 360] to [-180, 180]
-  if (normalizedLon > 180) normalizedLon -= 360;
-
-  return { latitude: normalizedLat, longitude: normalizedLon };
-}
-
-function convertCoordinateSystem(
-  coordinateSystem: string,
-  lat: number,
-  lon: number
-): { latitude: number; longitude: number } | undefined {
-  const sanitized = coordinateSystem.trim().replace(/\s+/g, "");
-  if (sanitized === "Planetographic+West0-360") {
-    return normalizeTo180Range(lat, lon, "planetographic-west");
-  }
-  if (sanitized === "Planetographic+East0-360") {
-    return normalizeTo180Range(lat, lon, "planetographic-east");
-  }
-  if (sanitized === "Planetocentric+East0-360") {
-    return normalizeTo180Range(lat, lon, "planetocentric-east");
-  }
-
-  return undefined; // Default case
-}
-
-app.get("/1/search/:planet", async (req, res) => {
-  if (!req.params.planet) {
-    res.status(400).json({ error: "Planet name is required" });
-    return;
-  }
-
-  const planet = req.params.planet.toLowerCase();
-  const query = req.query?.query || undefined;
-
-  if (typeof planet !== "string" || !planet) {
-    res.status(400).json({ error: "Invalid planet name" });
-    return;
-  }
-  const finalPath = path.join(csvFilePath, `${planet}.labels`);
-
-  if (!query) {
-    try {
-      const hasData = fs.existsSync(finalPath);
-      res.set("Access-Control-Allow-Origin", "*");
-      res.json({ hasData: hasData });
-    } catch (err) {
-      res.status(500).json({ error: "Error checking file existence" });
-    }
-    return;
-  }
-  try {
-    const locations = await loadLocations(finalPath);
-    const filteredLocations = locations.filter((p) => p.Feature_Name);
-
-    const matches = fuzzy.filter(query as string, filteredLocations, {
-      extract: (p) => p.Feature_Name,
-    });
-
-    const results: SearchResult[] = matches
-      .map((match) => {
-        const normalizedCoords = convertCoordinateSystem(
-          match.original.Coordinate_System,
-          match.original.Center_Latitude,
-          match.original.Center_Longitude
-        );
-        if (!normalizedCoords) {
-          return null;
+      const csv = csv_parser({
+        skipLines: 5, // = the number of empty lines in the label files
+        mapHeaders: (args) => {
+          switch (args.header) {
+            // Remove the headers that we don't want to load
+            case "Target":
+            case "Approval_Status":
+            case "Approval_Date":
+              return null;
+            default:
+              return args.header;
+          }
         }
-        const { latitude, longitude } = normalizedCoords;
-        return {
-          name: String(match.original.Feature_Name),
-          centerLatitude: Number(latitude),
-          centerLongitude: Number(longitude),
-          diameter: Number(match.original.Diameter),
-          origin: String(match.original.Origin),
-        };
-      })
-      .filter((result) => result !== null);
-    res.set("Access-Control-Allow-Origin", "*");
-    res.json({
-      name: planet,
-      result: results,
+      });
+      fs.createReadStream(dataPath)
+        .pipe(csv)
+        .on("data", (data) => {
+          // Don't add any empty lines
+          if (Object.keys(data).length > 0) {
+            data.Diameter = Number(data.Diameter);
+            data.Center_Latitude = Number(data.Center_Latitude);
+            data.Center_Longitude = Number(data.Center_Longitude);
+            results.push(data);
+          }
+        })
+        .on("end", () => resolve(results))
+        .on("error", (err) => reject(err));
     });
-  } catch (err) {
-    res.status(500).json({ error: err });
   }
+
+  const planet = file.substring(0, file.indexOf(".labels"));
+  let locations = await loadLocations(`data/${file}`);
+  Locations.set(planet, locations);
+}
+
+
+app.get("/1/search/:planet", (req, res) => {
+  const planet = req.params.planet.toLowerCase();
+  const locations = Locations.get(planet);
+
+  res.set("Access-Control-Allow-Origin", "*");
+
+  if (locations === undefined) {
+    // The requested planet does not have any locations
+    res.status(404).json({ hasData: false });
+    return;
+  }
+
+  const query = req.query?.query as string || undefined;
+  if (!query) {
+    // An empty query will just check whether we have data for the provided planet
+    const hasData = locations !== undefined;
+    res.status(200).json({ hasData: hasData });
+    return;
+  }
+
+  const matches = fuzzy.filter(query, locations, { extract: (p) => p.Feature_Name });
+
+  const results = matches.map((match) => {
+    const sanitized = match.original.Coordinate_System.trim().replace(/\s+/g, "");
+    switch (sanitized) {
+      case "Planetographic+West0-360":
+        // First flip from west-positive to east-positive
+        match.original.Center_Longitude = (360 - match.original.Center_Longitude) % 360;
+        // return normalizeTo180Range(lat, lon, "planetographic-west");
+      case "Planetographic+East0-360":
+      case "Planetocentric+East0-360":
+        // Shift from [0, 360] to [-180, 180]
+        if (match.original.Center_Longitude > 180) {
+          match.original.Center_Longitude -= 360;
+        }
+    }
+
+    return {
+      name: String(match.original.Feature_Name),
+      centerLatitude: (match.original.Center_Latitude),
+      centerLongitude: (match.original.Center_Longitude),
+      diameter: Number(match.original.Diameter),
+      origin: String(match.original.Origin),
+    };
+  });
+
+  res.status(200).json({
+    name: planet,
+    result: results,
+  });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+const Port = 3000;
+app.listen(Port, () => {
+  console.log(`Server running at http://localhost:${Port}`);
 });
