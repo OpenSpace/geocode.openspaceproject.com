@@ -66,6 +66,15 @@ for (let file of files) {
   Locations.set(planet, locations);
 }
 
+app.get("/", (req, res) => res.sendFile("public/index.html", { root: "." }));
+
+app.get("/1/search", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+
+  res.status(200).json({
+    planets: Array.from(Locations.keys())
+  });
+});
 
 app.get("/1/search/:planet", (req, res) => {
   const planet = req.params.planet.toLowerCase();
