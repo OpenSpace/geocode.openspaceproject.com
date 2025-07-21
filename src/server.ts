@@ -68,7 +68,7 @@ for (let file of files) {
 
 app.get("/", (req, res) => res.sendFile("public/index.html", { root: "." }));
 
-app.get("/1/search", (req, res) => {
+app.get("/1/list", (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
 
   res.status(200).json({
