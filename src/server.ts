@@ -3,13 +3,14 @@ import fs from "fs";
 import csv_parser from "csv-parser";
 import fuzzy from "fuzzy";
 
-// The keys of this interface have to match the headers in the labels file
+// The keys of this interface have to match the headers in the csv file
 interface Location {
-  Feature_Name: string;
+  FeatureName: string;
   Diameter: number;
-  Center_Latitude: number;
-  Center_Longitude: number;
-  Coordinate_System: string;
+  CenterLatitude: number;
+  CenterLongitude: number;
+  FeatureType: string;
+  ApprovalDate: number;
   Origin: string;
 }
 
@@ -23,25 +24,23 @@ let Locations = new Map<string, Location[]>();
 
 const app = express();
 
-// Read all of the labels files at startup
+// Read all of the csv files at startup
 let files = fs.readdirSync("data");
-files = files.filter((file) => file.endsWith(".labels"));
+files = files.filter((file) => file.endsWith(".csv"));
 for (let file of files) {
   function loadLocations(dataPath: string): Promise<Location[]> {
     return new Promise((resolve, reject) => {
       const results: Location[] = [];
 
       const csv = csv_parser({
-        skipLines: 5, // = the number of empty lines in the label files
         mapHeaders: (args) => {
-          switch (args.header) {
+          const header = args.header.trim().replace(/\s+/g, "");
+          switch (header) {
             // Remove the headers that we don't want to load
             case "Target":
-            case "Approval_Status":
-            case "Approval_Date":
-              return null;
+                return null;
             default:
-              return args.header;
+              return header;
           }
         }
       });
@@ -51,8 +50,9 @@ for (let file of files) {
           // Don't add any empty lines
           if (Object.keys(data).length > 0) {
             data.Diameter = Number(data.Diameter);
-            data.Center_Latitude = Number(data.Center_Latitude);
-            data.Center_Longitude = Number(data.Center_Longitude);
+            data.CenterLatitude = Number(data.CenterLatitude);
+            data.CenterLongitude = Number(data.CenterLongitude);
+            data.ApprovalDate = Number(data.ApprovalDate);
             results.push(data);
           }
         })
@@ -61,7 +61,7 @@ for (let file of files) {
     });
   }
 
-  const planet = file.substring(0, file.indexOf(".labels"));
+  const planet = file.substring(0, file.indexOf(".csv"));
   let locations = await loadLocations(`data/${file}`);
   Locations.set(planet, locations);
 }
@@ -73,6 +73,24 @@ app.get("/1/search", (req, res) => {
 
   res.status(200).json({
     planets: Array.from(Locations.keys())
+  });
+});
+
+app.get("/1/list/:planet", (req, res) => {
+  const planet = req.params.planet.toLowerCase();
+  const locations = Locations.get(planet);
+
+  res.set("Access-Control-Allow-Origin", "*");
+
+  if (locations === undefined) {
+    // The requested planet does not have any locations
+    res.status(404).json({ hasData: false });
+    return;
+  }
+
+  res.status(200).json({
+    name: planet,
+    result: locations
   });
 });
 
@@ -96,35 +114,27 @@ app.get("/1/search/:planet", (req, res) => {
     return;
   }
 
-  const matches = fuzzy.filter(query, locations, { extract: (p) => p.Feature_Name });
+  const matches = fuzzy.filter(query, locations, { extract: (p) => p.FeatureName });
 
   const results = matches.map((match) => {
-    const sanitized = match.original.Coordinate_System.trim().replace(/\s+/g, "");
-    switch (sanitized) {
-      case "Planetographic+West0-360":
-        // First flip from west-positive to east-positive
-        match.original.Center_Longitude = (360 - match.original.Center_Longitude) % 360;
-        // return normalizeTo180Range(lat, lon, "planetographic-west");
-      case "Planetographic+East0-360":
-      case "Planetocentric+East0-360":
-        // Shift from [0, 360] to [-180, 180]
-        if (match.original.Center_Longitude > 180) {
-          match.original.Center_Longitude -= 360;
-        }
+    // All values are provided in Planetocentric +East 0-360
+    if (match.original.CenterLongitude > 180) {
+      match.original.CenterLongitude -= 360;
     }
 
     return {
-      name: String(match.original.Feature_Name),
-      centerLatitude: (match.original.Center_Latitude),
-      centerLongitude: (match.original.Center_Longitude),
-      diameter: Number(match.original.Diameter),
-      origin: String(match.original.Origin),
+      name: match.original.FeatureName,
+      centerLatitude: match.original.CenterLatitude,
+      centerLongitude: match.original.CenterLongitude,
+      diameter: match.original.Diameter,
+      type: match.original.FeatureType,
+      origin: match.original.Origin,
     };
   });
 
   res.status(200).json({
     name: planet,
-    result: results,
+    result: results
   });
 });
 
