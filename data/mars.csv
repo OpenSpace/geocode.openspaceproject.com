@@ -180,6 +180,8 @@ Ayr,Mars,12.74,-38.98,91.58,"Crater, craters",1991,"Town in Queensland, Australi
 Azul,Mars,19.53,-42.07,317.49,"Crater, craters",1976,Town in Argentina.
 Azusa,Mars,39.25,-5.48,319.68,"Crater, craters",1976,"Town in California, USA."
 Babakin,Mars,76.66,-36.00,288.56,"Crater, craters",1985,Soviet builder of unmanned space stations (1914-1970).
+Babati,Mars,22.00,-3.16,137.93,"Crater, craters","Sep 26, 2025",Town in Tanzania.
+Babati Mons,Mars,44.00,-3.26,136.73,"Mons, montes","Sep 26, 2025","Named for nearby crater, Babati."
 Bacht,Mars,7.86,18.66,102.70,"Crater, craters",1976,Town in Uzbekistan.
 Bacolor,Mars,21.58,32.99,118.60,"Crater, craters",2006,Town in the Philippines.
 Bada,Mars,2.52,20.35,309.31,"Crater, craters",1988,Town in Russia.
@@ -1018,8 +1020,8 @@ Kushva,Mars,37.55,-43.96,324.49,"Crater, craters",1976,Town in Russia.
 Kyara,Mars,30.00,14.65,339.08,"Crater, craters","Dec 16, 2022","Village in Rajasthan, India."
 Kyela,Mars,30.00,3.08,4.70,"Crater, craters","Aug 22, 2022",Town in Tanzania.
 Labeatis Catenae,Mars,220.60,19.49,266.83,"Catena, catenae",1988,Classical albedo feature name.
-Labeatis Fossae,Mars,1496.36,24.58,275.47,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates."
 [Labeatis Fossae],Mars,616.00,20.68,265.00,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates. Name dropped because in the database twice."
+Labeatis Fossae,Mars,1496.36,24.58,275.47,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates."
 Labeatis Mensa,Mars,124.67,25.50,285.53,"Mensa, mensae",1988,Classical albedo feature name.
 Labeatis Mons,Mars,42.78,37.48,284.14,"Mons, montes",1994,Named for albedo feature Labeatis Lacus.
 Labou Vallis,Mars,257.79,-8.63,205.58,"Vallis, valles",1985,Origin unknown.
@@ -1854,8 +1856,8 @@ Tinto Vallis,Mars,191.97,-3.97,111.50,"Vallis, valles",2000,River in Spain.
 Tisia Valles,Mars,384.05,-10.75,46.72,"Vallis, valles",1985,"Ancient name for modern Tisza River, Ukraine."
 [Tithoniae Catena],Mars,380.00,-5.44,278.00,"Catena, catenae",1973,Classical albedo feature name. Name dropped because in the database twice.
 Tithoniae Catenae,Mars,562.00,-5.50,278.18,"Catena, catenae",1987,Classical albedo feature name.
-Tithoniae Fossae,Mars,838.00,-4.32,276.96,"Fossa, fossae",1982,Classical albedo name.
 [Tithoniae Fossae],Mars,492.00,-6.33,277.50,"Fossa, fossae",1988,Classical albedo feature name. Name dropped because in the database twice.
+Tithoniae Fossae,Mars,838.00,-4.32,276.96,"Fossa, fossae",1982,Classical albedo name.
 Tithonium Chasma,Mars,802.78,-4.60,275.71,"Chasma, chasmata",1973,Classical albedo feature name.
 Tithonius Lacus,Mars,0.00,-4.94,275.00,Albedo Feature,1958,“;Tithonian Lake“;; Tithonus received from his wife Eos eternal life but not eternal youth.
 Tiu Valles,Mars,1720.00,16.23,325.14,"Vallis, valles",1973,Word for “;Mars“; in old English (West Germanic).
@@ -1865,6 +1867,7 @@ Tiwi,Mars,21.15,-27.56,335.24,"Crater, craters",1976,Town in Oman.
 Toconao,Mars,17.16,-20.85,285.31,"Crater, craters",2006,Town in Chile.
 Tokko,Mars,2.70,22.55,109.52,"Crater, craters",1988,Town in Russia.
 Tokma,Mars,3.28,21.31,108.57,"Crater, craters",1988,Town in Russia.
+Tokmok,Mars,9.50,-29.38,351.34,"Crater, craters","Aug 18, 2025",Town in Kyrgyzstan.
 Tolon,Mars,2.64,18.23,104.98,"Crater, craters",1988,Town in Russia.
 Tomari,Mars,5.29,19.98,113.78,"Crater, craters",1988,Town in Russia.
 Tombaugh,Mars,59.84,3.56,161.92,"Crater, craters",2006,Clyde William; American astronomer (1906-1997).

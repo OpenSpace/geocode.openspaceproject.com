@@ -677,6 +677,7 @@ Bartels,Moon,54.95,24.51,-89.85,"Crater, craters",1970,Julius; German geophysici
 Bartels A,Moon,16.85,25.70,-89.60,Satellite Feature,2006,Julius; German geophysicist (1899-1964).
 [Baudelaire],Moon,0.00,-23.20,123.10,"Crater, craters",-,Pierre Charles; French poet (1821-1867).
 Bawa,Moon,1.57,-25.28,102.56,"Crater, craters",1976,African male name.
+Bay,Moon,3.50,-88.76,-36.85,"Crater, craters","Aug 28, 2025",Zoltán Lajos; Hungarian physicist (1900-1992).
 Bayer,Moon,48.51,-51.62,-35.14,"Crater, craters",1935,Johann; German astronomer (1572-1625).
 Bayer A,Moon,17.54,-51.36,-30.44,Satellite Feature,2006,Johann; German astronomer (1572-1625).
 Bayer B,Moon,23.09,-48.82,-28.20,Satellite Feature,2006,Johann; German astronomer (1572-1625).
@@ -1364,6 +1365,7 @@ Carrel,Moon,15.59,10.67,26.68,"Crater, craters",1979,"Alexis; French doctor, phy
 Carrillo,Moon,17.85,-2.11,80.96,"Crater, craters",1979,Flores Nabor; Mexican soil engineer (1911-1967).
 Carrington,Moon,27.77,43.97,62.04,"Crater, craters",1935,Richard Christopher; British astronomer (1826-1875).
 Cartan,Moon,15.62,4.24,59.29,"Crater, craters",1976,Elie-Joseph; French mathematician (1869-1951).
+Cartwright,Moon,17.00,-87.65,-46.95,"Crater, craters","Aug 28, 2025",Mary Lucy; English mathematician (1900-1998).
 Carver,Moon,62.45,-43.46,127.60,"Crater, craters",1970,George Washington; American botanist (1864-1943).
 [Carver K],Moon,0.00,-46.20,128.50,Satellite Feature,2006,George Washington; American botanist (1864-1943).
 Carver L,Moon,24.61,-45.78,128.80,Satellite Feature,2006,George Washington; American botanist (1864-1943).
@@ -3480,6 +3482,7 @@ Hayn B,Moon,24.58,65.16,63.86,Satellite Feature,2006,Friedrich Karl; German astr
 Hayn C,Moon,16.87,65.31,91.45,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
 Hayn D,Moon,20.85,65.44,61.64,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
 Hayn E,Moon,41.64,67.02,66.10,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
+Haynes,Moon,17.00,-88.75,167.39,"Crater, craters","Aug 28, 2025",Euphemia Lofton; American mathematician (1890-1980).
 Hayn F,Moon,62.54,68.01,85.75,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
 Hayn G,Moon,20.11,66.86,86.31,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
 Hayn H,Moon,12.26,63.37,68.61,Satellite Feature,2006,Friedrich Karl; German astronomer (1863-1928).
@@ -4452,6 +4455,7 @@ Lacus Solitudinis,Moon,122.67,-27.52,103.88,"Lacus, lacūs",1976,“;Lake of Sol
 Lacus Somniorum,Moon,424.76,37.56,30.80,"Lacus, lacūs",1935,“;Lake of Dreams.“;
 Lacus Spei,Moon,76.67,43.46,65.20,"Lacus, lacūs",1976,“;Lake of Hope.“;
 Lacus Temporis,Moon,205.30,46.77,56.21,"Lacus, lacūs",1976,“;Lake of Time.“;
+Lacus Tenebrarum,Moon,85.00,-86.71,-87.67,"Lacus, lacūs","Aug 28, 2025",“Lake of Darkness.”
 Lacus Timoris,Moon,153.65,-39.42,-27.95,"Lacus, lacūs",1976,“;Lake of Fear.“;
 Lacus Veris,Moon,382.88,-16.48,-85.91,"Lacus, lacūs",1970,“;Lake of Spring.“;
 Lade,Moon,58.11,-1.33,9.99,"Crater, craters",1935,Heinrich Eduard von; German astronomer (1817-1904).
@@ -7211,8 +7215,8 @@ Rima Oppolzer,Moon,94.20,-1.53,1.28,"Rima, rimae",1964,Named from nearby crater.
 Rima Réaumur,Moon,30.66,-2.84,2.47,"Rima, rimae",1964,Named from nearby crater.
 Rima Reiko,Moon,4.29,18.55,27.71,"Rima, rimae",1976,Japanese female name.
 Rima Rudolf,Moon,8.29,19.71,29.62,"Rima, rimae",1976,German male name.
-[Rima Schröter],Moon,150.00,26.00,-51.00,"Rima, rimae",1964,Erroneous name for Vallis Schröteri on LTO 38B3.
 Rima Schröter,Moon,27.25,1.28,-6.25,"Rima, rimae",1964,Named from nearby crater.
+[Rima Schröter],Moon,150.00,26.00,-51.00,"Rima, rimae",1964,Erroneous name for Vallis Schröteri on LTO 38B3.
 Rima Sharp,Moon,276.67,46.02,-50.36,"Rima, rimae",1964,Named from nearby crater.
 Rima Sheepshanks,Moon,157.49,58.28,23.69,"Rima, rimae",1985,Named from nearby crater.
 Rima Siegfried,Moon,13.96,-25.82,103.01,"Rima, rimae",1976,German male name.
