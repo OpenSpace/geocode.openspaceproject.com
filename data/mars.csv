@@ -227,6 +227,7 @@ Baykonyr,Mars,3.90,46.41,132.68,"Crater, craters",1979,Soviet launch site.
 Bazas,Mars,16.43,-27.78,93.38,"Crater, craters",1991,Town in France.
 Becquerel,Mars,165.23,21.89,352.06,"Crater, craters",1973,Antoine H.; French physicist (1852-1908).
 Beer,Mars,85.50,-14.47,351.83,"Crater, craters",1973,Wilhelm; German astronomer (1797-1850).
+Bekal,Mars,4.90,-2.79,308.73,"Crater, craters","Nov 24, 2025","Town in Kerala, India."
 Beloha,Mars,31.74,-39.58,56.71,"Crater, craters",2006,Town in Madagascar.
 Beltra,Mars,7.17,18.01,102.40,"Crater, craters",1988,Town in Ireland.
 Belva,Mars,0.90,18.48,77.38,"Crater, craters","Jan 17, 2020","Town in West Virginia, USA."
@@ -1005,6 +1006,8 @@ Koy,Mars,7.12,21.47,309.59,"Crater, craters",1988,Town in Russia.
 Kozova,Mars,50.00,3.90,359.04,"Crater, craters","Apr 21, 2021",Town in Ukraine.
 Krasnoye,Mars,6.55,35.85,143.84,"Crater, craters",1991,Town in Russia.
 Kribi,Mars,13.18,-43.00,316.49,"Crater, craters",1976,Town in the United Republic of Cameroon.
+Krishnan,Mars,77.00,-2.93,307.82,"Crater, craters","Nov 24, 2025",Maharajapuram Sitaram; Indian geologist (1898-1970).
+Krishnan Palus,Mars,50.00,-3.38,307.82,"Palus, paludes","Nov 24, 2025","Named from nearby crater, Krishnan."
 Krishtofovich,Mars,111.09,-48.09,97.34,"Crater, craters",1982,Afrikan Nikolaevich; Soviet paleobotanist (1885-1953).
 Krupac,Mars,10.00,-7.79,86.01,"Crater, craters","Oct 28, 2016","Town in the municipality of Pirot, Serbia."
 Kuba,Mars,26.59,-25.31,340.36,"Crater, craters",1976,Town in Azerbaijan.
@@ -1020,8 +1023,8 @@ Kushva,Mars,37.55,-43.96,324.49,"Crater, craters",1976,Town in Russia.
 Kyara,Mars,30.00,14.65,339.08,"Crater, craters","Dec 16, 2022","Village in Rajasthan, India."
 Kyela,Mars,30.00,3.08,4.70,"Crater, craters","Aug 22, 2022",Town in Tanzania.
 Labeatis Catenae,Mars,220.60,19.49,266.83,"Catena, catenae",1988,Classical albedo feature name.
-[Labeatis Fossae],Mars,616.00,20.68,265.00,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates. Name dropped because in the database twice."
 Labeatis Fossae,Mars,1496.36,24.58,275.47,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates."
+[Labeatis Fossae],Mars,616.00,20.68,265.00,"Fossa, fossae",1985,"Previously named feature at 30N, 75W; expanded coordinates. Name dropped because in the database twice."
 Labeatis Mensa,Mars,124.67,25.50,285.53,"Mensa, mensae",1988,Classical albedo feature name.
 Labeatis Mons,Mars,42.78,37.48,284.14,"Mons, montes",1994,Named for albedo feature Labeatis Lacus.
 Labou Vallis,Mars,257.79,-8.63,205.58,"Vallis, valles",1985,Origin unknown.
@@ -1467,6 +1470,7 @@ Peraea Cavus,Mars,56.24,-29.61,95.43,"Cavus, cavi",1991,Albedo feature name.
 Peraea Mons,Mars,14.94,-31.08,86.11,"Mons, montes",1991,Albedo feature name.
 Perepelkin,Mars,77.46,52.44,295.17,"Crater, craters",1973,Evgenii J.; Russian astronomer (1906-1938).
 Peridier,Mars,94.21,25.51,83.91,"Crater, craters",1973,Julien; French astronomer (1882-1967).
+Periyar Vallis,Mars,11.00,-3.43,307.91,"Vallis, valles","Nov 24, 2025","River in Kerala, India."
 Perrotin,Mars,82.82,-2.82,282.06,"Crater, craters",1988,"Henri A.; French astronomer, studied dark lineations on Mars (1845-1904)."
 Persbo,Mars,19.49,8.57,156.88,"Crater, craters",2006,Town in Sweden.
 Peta,Mars,75.75,-21.26,350.90,"Crater, craters",1997,Town in Greece.
@@ -1835,6 +1839,7 @@ Thira,Mars,21.84,-14.47,175.98,"Crater, craters",1997,Town on Santorini Island i
 Thom,Mars,22.06,-41.11,92.35,"Crater, craters",1991,Town in Thailand.
 Thoth,Mars,0.00,29.71,105.00,Albedo Feature,1958,Egyptian messenger god.
 Thule,Mars,13.07,-23.37,334.28,"Crater, craters",1976,Town in Greenland.
+Thumba,Mars,19.00,-3.53,308.60,"Crater, craters","Nov 24, 2025","Village in Kerala, India."
 [Thyles Chasma],Mars,235.00,-70.79,127.50,"Chasma, chasmata",1976,Classical albedo feature; name changed to Thyles Rupes.
 Thyles Montes,Mars,380.00,-69.88,126.54,"Mons, montes","Sep 13, 2006",Classical albedo feature name.
 Thyles Rupes,Mars,548.75,-69.32,132.28,"Rupes, rupēs",1985,Name and feature changes 1984 from Ultimi Cavi and Thyles Chasma.
@@ -1856,8 +1861,8 @@ Tinto Vallis,Mars,191.97,-3.97,111.50,"Vallis, valles",2000,River in Spain.
 Tisia Valles,Mars,384.05,-10.75,46.72,"Vallis, valles",1985,"Ancient name for modern Tisza River, Ukraine."
 [Tithoniae Catena],Mars,380.00,-5.44,278.00,"Catena, catenae",1973,Classical albedo feature name. Name dropped because in the database twice.
 Tithoniae Catenae,Mars,562.00,-5.50,278.18,"Catena, catenae",1987,Classical albedo feature name.
-[Tithoniae Fossae],Mars,492.00,-6.33,277.50,"Fossa, fossae",1988,Classical albedo feature name. Name dropped because in the database twice.
 Tithoniae Fossae,Mars,838.00,-4.32,276.96,"Fossa, fossae",1982,Classical albedo name.
+[Tithoniae Fossae],Mars,492.00,-6.33,277.50,"Fossa, fossae",1988,Classical albedo feature name. Name dropped because in the database twice.
 Tithonium Chasma,Mars,802.78,-4.60,275.71,"Chasma, chasmata",1973,Classical albedo feature name.
 Tithonius Lacus,Mars,0.00,-4.94,275.00,Albedo Feature,1958,“;Tithonian Lake“;; Tithonus received from his wife Eos eternal life but not eternal youth.
 Tiu Valles,Mars,1720.00,16.23,325.14,"Vallis, valles",1973,Word for “;Mars“; in old English (West Germanic).
@@ -1951,9 +1956,11 @@ Uzer,Mars,9.24,-1.22,358.25,"Crater, craters","Sep 14, 2006",Town in France.
 Vaals,Mars,10.85,-3.96,327.03,"Crater, craters",1976,Town in the Netherlands.
 Vaduz,Mars,2.00,38.24,15.79,"Crater, craters","Aug 23, 2010",Capital of the Principality of Liechtenstein.
 Valga,Mars,15.70,-44.32,323.36,"Crater, craters",1976,Town in Estonia.
+Valiamala,Mars,13.50,-2.89,307.12,"Crater, craters","Nov 24, 2025","Town in Kerala, India."
 Valles Marineris,Mars,3761.28,-14.01,301.41,"Vallis, valles",1973,General name of the system of canyons honoring the scientific team of the Mariner 9 program.
 Valverde,Mars,34.92,20.10,304.24,"Crater, craters",1976,Town in the Dominican Republic.
 Varahamihira,Mars,61.00,15.34,337.86,"Crater, craters","Dec 16, 2022",Indian mathematician and astronomer (505-587).
+Varkala,Mars,9.00,-2.79,308.36,"Crater, craters","Nov 24, 2025","Village in Kerala, India."
 Varus Valles,Mars,90.12,-8.57,204.01,"Vallis, valles",1988,"Classical name for present Var River, France."
 Vastitas Borealis,Mars,2002.91,87.73,32.53,"Vastitas, vastitates",1973,Classical albedo feature name.
 Vätö,Mars,17.24,-43.61,306.31,"Crater, craters",1976,Town in Sweden.
