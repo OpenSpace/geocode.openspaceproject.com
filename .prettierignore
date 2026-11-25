@@ -1,0 +1,10 @@
+# Build output and dependencies
+dist
+node_modules
+package-lock.json
+
+# Gazetteer data downloaded from the USGS
+data
+
+# Markdown is checked by markdownlint, whose list indentation differs from Prettier's
+*.md

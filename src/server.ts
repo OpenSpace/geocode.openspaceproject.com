@@ -1,7 +1,7 @@
-import express from "express";
-import fs from "fs";
-import csv_parser from "csv-parser";
-import fuzzy from "fuzzy";
+import csv_parser from 'csv-parser';
+import express from 'express';
+import fs from 'fs';
+import fuzzy from 'fuzzy';
 
 // The keys of this interface have to match the headers in the csv file
 interface Location {
@@ -14,9 +14,7 @@ interface Location {
   Origin: string;
 }
 
-let Locations = new Map<string, Location[]>();
-
-
+const Locations = new Map<string, Location[]>();
 
 //
 // main
@@ -25,20 +23,20 @@ let Locations = new Map<string, Location[]>();
 const app = express();
 
 // Read all of the csv files at startup
-let files = fs.readdirSync("data");
-files = files.filter((file) => file.endsWith(".csv"));
-for (let file of files) {
+let files = fs.readdirSync('data');
+files = files.filter((file) => file.endsWith('.csv'));
+for (const file of files) {
   function loadLocations(dataPath: string): Promise<Location[]> {
     return new Promise((resolve, reject) => {
       const results: Location[] = [];
 
       const csv = csv_parser({
         mapHeaders: (args) => {
-          const header = args.header.trim().replace(/\s+/g, "");
+          const header = args.header.trim().replace(/\s+/g, '');
           switch (header) {
             // Remove the headers that we don't want to load
-            case "Target":
-                return null;
+            case 'Target':
+              return null;
             default:
               return header;
           }
@@ -46,7 +44,7 @@ for (let file of files) {
       });
       fs.createReadStream(dataPath)
         .pipe(csv)
-        .on("data", (data) => {
+        .on('data', (data) => {
           // Don't add any empty lines
           if (Object.keys(data).length > 0) {
             data.Diameter = Number(data.Diameter);
@@ -56,31 +54,31 @@ for (let file of files) {
             results.push(data);
           }
         })
-        .on("end", () => resolve(results))
-        .on("error", (err) => reject(err));
+        .on('end', () => resolve(results))
+        .on('error', (err) => reject(err));
     });
   }
 
-  const planet = file.substring(0, file.indexOf(".csv"));
-  let locations = await loadLocations(`data/${file}`);
+  const planet = file.substring(0, file.indexOf('.csv'));
+  const locations = await loadLocations(`data/${file}`);
   Locations.set(planet, locations);
 }
 
-app.get("/", (req, res) => res.sendFile("public/index.html", { root: "." }));
+app.get('/', (_req, res) => res.sendFile('public/index.html', { root: '.' }));
 
-app.get("/1/list", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
+app.get('/1/list', (_req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
 
   res.status(200).json({
     planets: Array.from(Locations.keys())
   });
 });
 
-app.get("/1/list/:planet", (req, res) => {
+app.get('/1/list/:planet', (req, res) => {
   const planet = req.params.planet.toLowerCase();
   const locations = Locations.get(planet);
 
-  res.set("Access-Control-Allow-Origin", "*");
+  res.set('Access-Control-Allow-Origin', '*');
 
   if (locations === undefined) {
     // The requested planet does not have any locations
@@ -94,11 +92,11 @@ app.get("/1/list/:planet", (req, res) => {
   });
 });
 
-app.get("/1/search/:planet", (req, res) => {
+app.get('/1/search/:planet', (req, res) => {
   const planet = req.params.planet.toLowerCase();
   const locations = Locations.get(planet);
 
-  res.set("Access-Control-Allow-Origin", "*");
+  res.set('Access-Control-Allow-Origin', '*');
 
   if (locations === undefined) {
     // The requested planet does not have any locations
@@ -106,7 +104,7 @@ app.get("/1/search/:planet", (req, res) => {
     return;
   }
 
-  const query = req.query?.query as string || undefined;
+  const query = (req.query['query'] as string) || undefined;
   if (!query) {
     // An empty query will just check whether we have data for the provided planet
     const hasData = locations !== undefined;
@@ -128,7 +126,7 @@ app.get("/1/search/:planet", (req, res) => {
       centerLongitude: match.original.CenterLongitude,
       diameter: match.original.Diameter,
       type: match.original.FeatureType,
-      origin: match.original.Origin,
+      origin: match.original.Origin
     };
   });
 
